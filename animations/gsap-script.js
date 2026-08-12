@@ -7,7 +7,9 @@ import { buildJoeLift } from './joe/joeLift.js'; // Imports the stub
 import { buildJoeSip } from './joe/joeSip.js';   // Imports the stub
 
 // Register GSDevTools with GSAP
-gsap.registerPlugin(GSDevTools);
+if (typeof GSDevTools !== "undefined") {
+    gsap.registerPlugin(GSDevTools);
+}
 
 export const joe = {
     init() {
@@ -34,7 +36,10 @@ const masterTL = gsap.timeline();
 masterTL.add(joe.idle)
     .add(joe.steam, 0);
 
-GSDevTools.create({ animation: masterTL });
+// Attach GSDevTools safely if present
+if (typeof GSDevTools !== "undefined") {
+    GSDevTools.create({ animation: masterTL });
+}
 
 
 
