@@ -16,6 +16,7 @@ export const joe = {
         this.steam = buildJoeSteam(); // Working loop
         this.idle = buildJoeIdle();   // Working loop
         this.blink = buildJoeBlink(); // Ambient blink
+        this.liftTL = buildJoeLift(); // Instantiate paused lift timeline
     },
 
     lift() {
@@ -31,6 +32,24 @@ export const joe = {
 // 2. Initialize and attach GSDevTools once the DOM is ready
 // Initialize immediately (Modules already defer execution until HTML parsing is complete)
 joe.init();
+
+// --- Interactive Hover Logic ---
+const interactiveTarget = document.querySelector("#joe-cup"); // or "#joe-torso" / "#joe" wrapper
+
+if (interactiveTarget) {
+    // Add visual cue for hoverability
+    interactiveTarget.style.cursor = "pointer";
+
+    // Play forward on hover enter
+    interactiveTarget.addEventListener("mouseenter", () => {
+        joe.liftTL.play();
+    });
+
+    // Smoothly reverse back on hover exit
+    interactiveTarget.addEventListener("mouseleave", () => {
+        joe.liftTL.reverse();
+    });
+}
 
 const masterTL = gsap.timeline();
 masterTL.add(joe.idle)
