@@ -1,7 +1,6 @@
 
 // js/animations/joe/joeAloopSteam.js
 // Import GSAP if you are using ES modules/bundlers (optional if loaded via global <script> tag)
-import gsap from 'gsap';
 
 export function buildJoeSteam() {
     // 1. DOM Elements & Constants

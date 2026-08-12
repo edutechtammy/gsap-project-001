@@ -66,10 +66,13 @@
 </svg>
 
 
-  <!-- Your animation script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  
-    <!-- 2. Load your custom JS script second -->
+<!-- 1. Load GSAP core -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<!-- 2. Load GSDevTools plugin -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/GSDevTools.min.js"></script>
+
+<!-- 3. Load your main module script last -->
 <script type="module" src="animations/gsap-script.js"></script>
 </body>
 </html>

@@ -1,15 +1,19 @@
 
-// js/animations/joe/index.js
+// Import local character builder functions
 import { buildJoeBlink } from './joe/joeAloopBlink.js';   // Imports the stub
 import { buildJoeSteam } from './joe/joeAloopSteam.js';
 import { buildJoeIdle } from './joe/joeIdle.js';
 import { buildJoeLift } from './joe/joeLift.js'; // Imports the stub
 import { buildJoeSip } from './joe/joeSip.js';   // Imports the stub
 
+// Register GSDevTools with GSAP
+gsap.registerPlugin(GSDevTools);
+
 export const joe = {
     init() {
         this.steam = buildJoeSteam(); // Working loop
         this.idle = buildJoeIdle();   // Working loop
+        this.blink = buildJoeBlink(); // Ambient blink
     },
 
     lift() {
@@ -21,3 +25,17 @@ export const joe = {
         return buildJoeSip();
     }
 };
+
+// 2. Initialize and attach GSDevTools once the DOM is ready
+// Initialize immediately (Modules already defer execution until HTML parsing is complete)
+joe.init();
+
+const masterTL = gsap.timeline();
+masterTL.add(joe.idle)
+    .add(joe.steam, 0);
+
+GSDevTools.create({ animation: masterTL });
+
+
+
+
