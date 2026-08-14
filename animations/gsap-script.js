@@ -34,22 +34,21 @@ export const joe = {
 joe.init();
 
 // --- Interactive Hover Logic ---
-const interactiveTarget = document.querySelector("#joe-cup"); // or "#joe-torso" / "#joe" wrapper
+const interactiveTarget = document.querySelector("#joe-cup"); 
 
 if (interactiveTarget) {
-    // Add visual cue for hoverability
     interactiveTarget.style.cursor = "pointer";
 
-    // Play forward on hover enter
     interactiveTarget.addEventListener("mouseenter", () => {
-        joe.liftTL.play();
+        joe.liftTL.timeScale(1).play(); // Play forward at normal speed
     });
 
-    // Smoothly reverse back on hover exit
     interactiveTarget.addEventListener("mouseleave", () => {
-        joe.liftTL.reverse();
+        joe.liftTL.timeScale(1.5).reverse(); // Reverse slightly faster so it resets quickly
     });
 }
+
+
 
 const masterTL = gsap.timeline();
 masterTL.add(joe.idle)

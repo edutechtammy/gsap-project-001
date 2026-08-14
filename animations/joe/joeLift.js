@@ -36,7 +36,7 @@ export function buildJoeLift() {
             transformOrigin: "top center",
             duration: 1.0,
             ease: "power2.out"
-        }, 0); 
+        }, 0);
 
     return liftTL;
 }
